@@ -1,13 +1,14 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Calendar as CalendarIcon, Clock, MoreHorizontal, Mail, Activity, CheckCircle2, Timer, AlertCircle, Users } from "lucide-react";
+import { Calendar as CalendarIcon, Clock, Mail, Activity, CheckCircle2, Timer, AlertCircle, Users } from "lucide-react";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { fetchGraphQL } from "@/externalapis";
 import { redirect } from "next/navigation";
 import { subDays } from "date-fns";
 import Link from "next/link";
+import { AppointmentCommandCenter } from "@/components/appointment-command-center";
 
 // Define the shape of the data returning from our GraphQL API
 interface Appointment {
@@ -21,6 +22,7 @@ interface Appointment {
     appointmentType: string;
     fee: number;
     attendance: string | null;
+    doctorTimeZone?: string;
 }
 
 const GET_APPOINTMENTS_QUERY = `
@@ -38,6 +40,7 @@ const GET_APPOINTMENTS_QUERY = `
         appointmentType
         fee
         attendance
+        doctorTimeZone
       }
     }
   }
@@ -164,10 +167,10 @@ export default async function AppointmentsPage() {
                             const timePeriod = timeParts[1] || "";
                             const leftBorder =
                                 apt.status.toLowerCase() === "completed" ? "border-l-emerald-500" :
-                                apt.status.toLowerCase() === "pending" ? "border-l-amber-500" :
-                                apt.status.toLowerCase() === "in-progress" ? "border-l-blue-500" :
-                                apt.status.toLowerCase() === "cancelled" ? "border-l-red-400" :
-                                "border-l-zinc-300";
+                                    apt.status.toLowerCase() === "pending" ? "border-l-amber-500" :
+                                        apt.status.toLowerCase() === "in-progress" ? "border-l-blue-500" :
+                                            apt.status.toLowerCase() === "cancelled" ? "border-l-red-400" :
+                                                "border-l-zinc-300";
 
                             return (
                                 <Card key={apt.id} className={`border border-l-4 ${leftBorder} hover:shadow-sm transition-shadow`}>
@@ -208,9 +211,18 @@ export default async function AppointmentsPage() {
                                                     View
                                                 </Button>
                                             </Link>
-                                            <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground hover:text-foreground">
-                                                <MoreHorizontal className="h-4 w-4" />
-                                            </Button>
+                                            <AppointmentCommandCenter
+                                                appointment={{
+                                                    id: apt.id,
+                                                    trackingId: apt.trackingId,
+                                                    patientName: apt.patientName,
+                                                    date: apt.date,
+                                                    time: apt.time,
+                                                    status: apt.status || "pending",
+                                                    doctorTimeZone: apt.doctorTimeZone,
+                                                }}
+                                                doctorId={doctorId}
+                                            />
                                         </div>
 
                                     </CardContent>
