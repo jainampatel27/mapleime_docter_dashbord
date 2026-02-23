@@ -164,7 +164,9 @@ export default async function AppointmentHistoryPage() {
                                                 "border-l-zinc-300";
 
                             return (
-                                <Card key={apt.id} className={`border border-l-4 ${leftBorder} hover:shadow-sm transition-shadow`}>
+                                <div key={apt.id} className="relative">
+                                    <Link href={`/appointments/view/${apt.id}`} className="absolute inset-0 sm:hidden rounded-[inherit] z-0" aria-label={`View ${apt.patientName}'s appointment`} />
+                                <Card className={`border border-l-4 ${leftBorder} hover:shadow-sm transition-shadow`}>
                                     <CardContent className="p-4 flex items-center gap-4">
 
                                         {/* Date + Time block */}
@@ -201,7 +203,7 @@ export default async function AppointmentHistoryPage() {
                                         </div>
 
                                         {/* Actions */}
-                                        <div className="flex items-center gap-1 shrink-0">
+                                        <div className="relative z-10 flex items-center gap-1 shrink-0">
                                             <Link href={`/appointments/view/${apt.id}`}>
                                                 <Button variant="outline" size="sm" className="h-8 px-3 text-xs font-medium hidden sm:flex">
                                                     View
@@ -223,6 +225,7 @@ export default async function AppointmentHistoryPage() {
 
                                     </CardContent>
                                 </Card>
+                                </div>
                             );
                         })
                     )}

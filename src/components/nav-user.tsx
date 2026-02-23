@@ -9,6 +9,7 @@ import {
 } from "@tabler/icons-react"
 
 import { useTheme } from "next-themes"
+import Link from "next/link"
 
 import {
   Avatar,
@@ -88,9 +89,11 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <IconUserCircle />
-                Account
+              <DropdownMenuItem asChild>
+                <Link href="/account" className="flex items-center gap-2 cursor-pointer">
+                  <IconUserCircle />
+                  Account
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
                 {theme === "dark" ? <IconSun /> : <IconMoon />}

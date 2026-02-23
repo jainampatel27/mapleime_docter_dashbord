@@ -2,12 +2,14 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import { redirect, notFound } from "next/navigation";
 import { fetchAppointmentDetail } from "@/app/actions/fetch-appointment-detail";
+import { geocodeAddress } from "@/app/actions/geocode";
 import { Card, CardContent } from "@/components/ui/card";
 import { BackButton } from "@/components/back-button";
+import { PatientLocationMapWrapper } from "@/components/patient-location-map-wrapper";
 import {
     AlertCircle, User, Mail, Phone, MapPin, Calendar,
     Clock, Activity, DollarSign, FileText, Users, RefreshCw,
-    XCircle, CalendarDays, UserCheck,
+    XCircle, CalendarDays, UserCheck, ExternalLink,
 } from "lucide-react";
 
 // ─────────────────────────────────────────────
@@ -102,6 +104,9 @@ export default async function AppointmentViewPage({
 
     const sc = statusConfig(apt.status);
     const ac = attendanceBadge(apt.attendance);
+
+    // Geocode patient location for the map (non-blocking — returns null on failure)
+    const geoResult = await geocodeAddress(apt.patientAddress, apt.patientPostalCode).catch(() => null);
     const timeParts = apt.time?.split(" ") ?? [];
     const timeNum = timeParts[0] || apt.time;
     const timePeriod = timeParts[1] || "";
@@ -162,11 +167,13 @@ export default async function AppointmentViewPage({
 
                         {/* Info grid */}
                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-4">
-                            <InfoItem icon={<User className="h-4 w-4" />}         label="Patient"      value={apt.patientName} />
-                            <InfoItem icon={<Mail className="h-4 w-4" />}         label="Email"        value={apt.patientEmail} />
-                            <InfoItem icon={<Phone className="h-4 w-4" />}        label="Phone"        value={apt.patientPhone} />
-                            <InfoItem icon={<CalendarDays className="h-4 w-4" />} label="Date of Birth" value={apt.patientDateOfBirth || "—"} />
-                            <InfoItem icon={<User className="h-4 w-4" />}         label="Gender"       value={cap(apt.patientGender)} />
+                            <InfoItem icon={<User className="h-4 w-4" />}         label="Patient"       value={apt.patientName} />
+                            <InfoItem icon={<Calendar className="h-4 w-4" />}     label="Appt. Date"    value={fmtDate(apt.date)} />
+                            <InfoItem icon={<Clock className="h-4 w-4" />}        label="Appt. Time"    value={apt.time} />
+                            <InfoItem icon={<Mail className="h-4 w-4" />}         label="Email"         value={apt.patientEmail} />
+                            <InfoItem icon={<Phone className="h-4 w-4" />}        label="Phone"         value={apt.patientPhone} />
+                            <InfoItem icon={<CalendarDays className="h-4 w-4" />} label="Date of Birth"  value={apt.patientDateOfBirth || "—"} />
+                            <InfoItem icon={<User className="h-4 w-4" />}         label="Gender"        value={cap(apt.patientGender)} />
                             {apt.patientAddress && (
                                 <InfoItem icon={<MapPin className="h-4 w-4" />} label="Address" value={apt.patientAddress} />
                             )}
@@ -283,6 +290,55 @@ export default async function AppointmentViewPage({
                                     </div>
                                 ))}
                             </div>
+                        </CardContent>
+                    </Card>
+                )}
+
+                {/* Patient Location Map */}
+                {(apt.patientAddress || apt.patientPostalCode) && (
+                    <Card className="border">
+                        <CardContent className="p-4">
+                            <div className="flex items-center justify-between mb-3">
+                                <div className="flex items-center gap-2">
+                                    <MapPin className="h-4 w-4 text-muted-foreground" />
+                                    <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">Patient Location</p>
+                                </div>
+                                <a
+                                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([apt.patientAddress, apt.patientPostalCode].filter(Boolean).join(", "))}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1.5 text-xs text-primary hover:underline"
+                                >
+                                    <ExternalLink className="h-3 w-3" />
+                                    Open in Maps
+                                </a>
+                            </div>
+                            <p className="text-xs text-muted-foreground mb-3">
+                                {[apt.patientAddress, apt.patientPostalCode].filter(Boolean).join(", ")}
+                            </p>
+                            {geoResult ? (
+                                <PatientLocationMapWrapper
+                                    lat={geoResult.lat}
+                                    lng={geoResult.lng}
+                                    displayName={geoResult.displayName}
+                                    address={apt.patientAddress}
+                                    postalCode={apt.patientPostalCode}
+                                />
+                            ) : (
+                                <div className="h-40 w-full rounded-lg border bg-muted/40 flex flex-col items-center justify-center gap-2 text-muted-foreground">
+                                    <MapPin className="h-5 w-5" />
+                                    <p className="text-xs">Could not load map preview</p>
+                                    <a
+                                        href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([apt.patientAddress, apt.patientPostalCode].filter(Boolean).join(", "))}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-xs text-primary hover:underline flex items-center gap-1"
+                                    >
+                                        <ExternalLink className="h-3 w-3" />
+                                        Open in Google Maps
+                                    </a>
+                                </div>
+                            )}
                         </CardContent>
                     </Card>
                 )}
