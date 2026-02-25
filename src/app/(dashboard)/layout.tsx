@@ -7,6 +7,8 @@ import {
     SidebarInset,
     SidebarProvider,
 } from "@/components/ui/sidebar"
+import { WallpaperProvider } from "@/hooks/use-wallpaper";
+import { DashboardBackground } from "@/components/dashboard-background";
 
 export default async function DashboardLayout({
     children,
@@ -20,23 +22,25 @@ export default async function DashboardLayout({
     }
 
     return (
-        <SidebarProvider
-            style={
-                {
-                    "--sidebar-width": "calc(var(--spacing) * 72)",
-                    "--header-height": "calc(var(--spacing) * 12)",
-                } as React.CSSProperties
-            }
-        >
-            <AppSidebar variant="inset" user={session.user} />
-            <SidebarInset>
-                <SiteHeader />
-                <div className="flex flex-1 flex-col overflow-hidden">
-                    <main className="flex-1 overflow-y-auto px-4 py-4 md:py-6 lg:px-6">
-                        {children}
-                    </main>
-                </div>
-            </SidebarInset>
-        </SidebarProvider>
+        <WallpaperProvider>
+            <SidebarProvider
+                style={
+                    {
+                        "--sidebar-width": "calc(var(--spacing) * 72)",
+                        "--header-height": "calc(var(--spacing) * 12)",
+                    } as React.CSSProperties
+                }
+            >
+                <AppSidebar variant="inset" user={session.user} />
+                <SidebarInset>
+                    <SiteHeader />
+                    <DashboardBackground>
+                        <main className="flex-1 overflow-y-auto px-4 py-4 md:py-6 lg:px-6">
+                            {children}
+                        </main>
+                    </DashboardBackground>
+                </SidebarInset>
+            </SidebarProvider>
+        </WallpaperProvider>
     );
 }
