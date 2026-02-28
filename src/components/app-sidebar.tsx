@@ -5,9 +5,9 @@ import {
   IconDashboard,
   IconCalendar,
   IconHistory,
-  IconUsers,
   IconSettings,
   IconInnerShadowTop,
+  IconClock,
 } from "@tabler/icons-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -40,9 +40,9 @@ export function AppSidebar({ user, ...props }: React.ComponentProps<typeof Sideb
       icon: IconHistory,
     },
     {
-      title: "Patients",
-      url: "/patients",
-      icon: IconUsers,
+      title: "Appointment Settings",
+      url: "/appointment-settings",
+      icon: IconClock,
     },
     {
       title: "Settings",

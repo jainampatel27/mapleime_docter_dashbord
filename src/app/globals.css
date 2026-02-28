@@ -7,8 +7,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-roboto);
+  --font-mono: var(--font-roboto-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -47,73 +47,121 @@
   --radius-4xl: calc(var(--radius) + 16px);
 }
 
+/* ============================================
+   Material Design 3 — Color System
+   Generated from MD3 blue-toned palette
+   ============================================ */
+
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.75rem;
+
+  /* MD3 Surface */
+  --background: oklch(0.985 0.002 264);
+  --foreground: oklch(0.185 0.02 264);
+
+  /* MD3 Surface Container */
+  --card: oklch(0.965 0.005 264);
+  --card-foreground: oklch(0.185 0.02 264);
+
+  /* MD3 Surface Container High */
+  --popover: oklch(0.955 0.005 264);
+  --popover-foreground: oklch(0.185 0.02 264);
+
+  /* MD3 Primary */
+  --primary: oklch(0.50 0.18 264);
+  --primary-foreground: oklch(1 0 0);
+
+  /* MD3 Secondary Container */
+  --secondary: oklch(0.91 0.025 264);
+  --secondary-foreground: oklch(0.26 0.04 264);
+
+  /* MD3 Surface Variant */
+  --muted: oklch(0.93 0.01 264);
+  --muted-foreground: oklch(0.45 0.03 264);
+
+  /* MD3 Tertiary Container */
+  --accent: oklch(0.91 0.035 300);
+  --accent-foreground: oklch(0.26 0.06 300);
+
+  /* MD3 Error */
+  --destructive: oklch(0.55 0.22 27);
+
+  /* MD3 Outline Variant / Outline */
+  --border: oklch(0.82 0.012 264);
+  --input: oklch(0.75 0.02 264);
+  --ring: oklch(0.50 0.18 264);
+
+  /* MD3 Charts */
+  --chart-1: oklch(0.50 0.18 264);
+  --chart-2: oklch(0.60 0.15 165);
+  --chart-3: oklch(0.55 0.12 300);
+  --chart-4: oklch(0.70 0.16 85);
+  --chart-5: oklch(0.60 0.20 30);
+
+  /* MD3 Navigation Surface */
+  --sidebar: oklch(0.97 0.004 264);
+  --sidebar-foreground: oklch(0.185 0.02 264);
+  --sidebar-primary: oklch(0.50 0.18 264);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.93 0.015 264);
+  --sidebar-accent-foreground: oklch(0.26 0.04 264);
+  --sidebar-border: oklch(0.88 0.008 264);
+  --sidebar-ring: oklch(0.50 0.18 264);
 }
 
 .dark {
-  --background: oklch(0.18 0.01 260);     /* Soft dark grey background */
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.22 0.01 260);           /* Slate matte card */
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.22 0.01 260);        /* Matches card */
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.18 0.01 260);
-  --secondary: oklch(0.28 0.01 260);      /* Lighter matte grey for secondary buttons */
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.26 0.01 260);          /* Very soft grey for borders/hover */
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.28 0.01 260);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(0.28 0.01 260);         /* Subtle matte border lines */
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.15 0.01 260);        /* Deep matte sidebar to separate depth */
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.22 0.01 260); /* Sidebar highlight matches card depth */
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.28 0.01 260); /* Seamless soft sidebar lines */
-  --sidebar-ring: oklch(0.556 0 0);
+  /* MD3 Surface (dark) */
+  --background: oklch(0.145 0.014 264);
+  --foreground: oklch(0.93 0.008 264);
+
+  /* MD3 Surface Container (dark) */
+  --card: oklch(0.195 0.016 264);
+  --card-foreground: oklch(0.93 0.008 264);
+
+  /* MD3 Surface Container High (dark) */
+  --popover: oklch(0.22 0.016 264);
+  --popover-foreground: oklch(0.93 0.008 264);
+
+  /* MD3 Primary (dark — lighter tint) */
+  --primary: oklch(0.74 0.14 264);
+  --primary-foreground: oklch(0.25 0.10 264);
+
+  /* MD3 Secondary Container (dark) */
+  --secondary: oklch(0.27 0.03 264);
+  --secondary-foreground: oklch(0.88 0.025 264);
+
+  /* MD3 Surface Variant (dark) */
+  --muted: oklch(0.24 0.015 264);
+  --muted-foreground: oklch(0.72 0.02 264);
+
+  /* MD3 Tertiary Container (dark) */
+  --accent: oklch(0.30 0.04 300);
+  --accent-foreground: oklch(0.88 0.035 300);
+
+  /* MD3 Error (dark) */
+  --destructive: oklch(0.70 0.19 22);
+
+  /* MD3 Outline Variant / Outline (dark) */
+  --border: oklch(0.35 0.016 264);
+  --input: oklch(0.45 0.02 264);
+  --ring: oklch(0.74 0.14 264);
+
+  /* MD3 Charts (dark) */
+  --chart-1: oklch(0.65 0.18 264);
+  --chart-2: oklch(0.70 0.15 165);
+  --chart-3: oklch(0.65 0.14 300);
+  --chart-4: oklch(0.75 0.14 85);
+  --chart-5: oklch(0.70 0.18 30);
+
+  /* MD3 Navigation Surface (dark) */
+  --sidebar: oklch(0.13 0.014 264);
+  --sidebar-foreground: oklch(0.93 0.008 264);
+  --sidebar-primary: oklch(0.74 0.14 264);
+  --sidebar-primary-foreground: oklch(0.25 0.10 264);
+  --sidebar-accent: oklch(0.22 0.018 264);
+  --sidebar-accent-foreground: oklch(0.88 0.025 264);
+  --sidebar-border: oklch(0.30 0.016 264);
+  --sidebar-ring: oklch(0.74 0.14 264);
 }
 
 @layer base {
@@ -123,4 +171,35 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* ============================================
+   Material Design 3 — Type Scale Utilities
+   Mapped to Roboto via --font-sans
+   ============================================ */
+@layer utilities {
+  /* Display */
+  .md3-display-large  { font-size: 3.5625rem; line-height: 4rem;    font-weight: 400; letter-spacing: -0.015625em; }
+  .md3-display-medium { font-size: 2.8125rem; line-height: 3.25rem; font-weight: 400; letter-spacing: 0; }
+  .md3-display-small  { font-size: 2.25rem;   line-height: 2.75rem; font-weight: 400; letter-spacing: 0; }
+
+  /* Headline */
+  .md3-headline-large  { font-size: 2rem;     line-height: 2.5rem;  font-weight: 400; letter-spacing: 0; }
+  .md3-headline-medium { font-size: 1.75rem;  line-height: 2.25rem; font-weight: 400; letter-spacing: 0; }
+  .md3-headline-small  { font-size: 1.5rem;   line-height: 2rem;    font-weight: 400; letter-spacing: 0; }
+
+  /* Title */
+  .md3-title-large  { font-size: 1.375rem; line-height: 1.75rem; font-weight: 500; letter-spacing: 0; }
+  .md3-title-medium { font-size: 1rem;     line-height: 1.5rem;  font-weight: 500; letter-spacing: 0.009375em; }
+  .md3-title-small  { font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; letter-spacing: 0.00625em; }
+
+  /* Body */
+  .md3-body-large  { font-size: 1rem;     line-height: 1.5rem;  font-weight: 400; letter-spacing: 0.03125em; }
+  .md3-body-medium { font-size: 0.875rem; line-height: 1.25rem; font-weight: 400; letter-spacing: 0.015625em; }
+  .md3-body-small  { font-size: 0.75rem;  line-height: 1rem;    font-weight: 400; letter-spacing: 0.025em; }
+
+  /* Label */
+  .md3-label-large  { font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; letter-spacing: 0.00625em; }
+  .md3-label-medium { font-size: 0.75rem;  line-height: 1rem;    font-weight: 500; letter-spacing: 0.03125em; }
+  .md3-label-small  { font-size: 0.6875rem; line-height: 1rem;   font-weight: 500; letter-spacing: 0.03125em; }
 }

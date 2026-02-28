@@ -67,7 +67,7 @@ export function DashboardBackground({
                     style={{
                         background: isDark
                             ? "color-mix(in oklch, var(--background) 30%, transparent)"
-                            : "color-mix(in oklch, white 20%, transparent)",
+                            : "color-mix(in oklch, var(--background) 20%, transparent)",
                     }}
                 />
             )}

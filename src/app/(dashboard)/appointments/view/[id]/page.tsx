@@ -11,6 +11,7 @@ import {
     Clock, Activity, DollarSign, FileText, Users, RefreshCw,
     XCircle, CalendarDays, UserCheck, ExternalLink,
 } from "lucide-react";
+import { AppointmentCommandCenter } from "@/components/appointment-command-center";
 
 // ─────────────────────────────────────────────
 // Helpers
@@ -21,21 +22,21 @@ function statusConfig(status: string) {
         case "completed":
             return { label: "Completed", badge: "bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20", border: "border-l-emerald-500", dot: "bg-emerald-500" };
         case "approved":
-            return { label: "Approved",  badge: "bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20",       border: "border-l-blue-500",    dot: "bg-blue-500" };
+            return { label: "Approved", badge: "bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-500/10 dark:text-blue-400 dark:border-blue-500/20", border: "border-l-blue-500", dot: "bg-blue-500" };
         case "pending":
-            return { label: "Pending",   badge: "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20", border: "border-l-amber-500",   dot: "bg-amber-500" };
+            return { label: "Pending", badge: "bg-amber-100 text-amber-700 border-amber-200 dark:bg-amber-500/10 dark:text-amber-400 dark:border-amber-500/20", border: "border-l-amber-500", dot: "bg-amber-500" };
         case "canceled":
         case "cancelled":
-            return { label: "Cancelled", badge: "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20",             border: "border-l-red-400",     dot: "bg-red-400" };
+            return { label: "Cancelled", badge: "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20", border: "border-l-red-400", dot: "bg-red-400" };
         default:
-            return { label: status,      badge: "bg-zinc-100 text-zinc-600 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700",             border: "border-l-zinc-300",    dot: "bg-zinc-400" };
+            return { label: status, badge: "bg-zinc-100 text-zinc-600 border-zinc-200 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700", border: "border-l-zinc-300", dot: "bg-zinc-400" };
     }
 }
 
 function attendanceBadge(v: string | null) {
     if (!v) return null;
     return v === "shown"
-        ? { label: "Shown",     cls: "bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20" }
+        ? { label: "Shown", cls: "bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-500/20" }
         : { label: "Not Shown", cls: "bg-red-100 text-red-700 border-red-200 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20" };
 }
 
@@ -141,6 +142,21 @@ export default async function AppointmentViewPage({
                             {apt.appointmentType}
                         </span>
                     )}
+
+                    <div className="border-l border-border pl-2 ml-1 flex items-center">
+                        <AppointmentCommandCenter
+                            appointment={{
+                                id: apt.id,
+                                trackingId: apt.trackingId,
+                                patientName: apt.patientName,
+                                date: apt.date,
+                                time: apt.time,
+                                status: apt.status || "pending",
+                                doctorTimeZone: apt.doctorTimeZone,
+                            }}
+                            doctorId={doctorId}
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -167,13 +183,13 @@ export default async function AppointmentViewPage({
 
                         {/* Info grid */}
                         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-4">
-                            <InfoItem icon={<User className="h-4 w-4" />}         label="Patient"       value={apt.patientName} />
-                            <InfoItem icon={<Calendar className="h-4 w-4" />}     label="Appt. Date"    value={fmtDate(apt.date)} />
-                            <InfoItem icon={<Clock className="h-4 w-4" />}        label="Appt. Time"    value={apt.time} />
-                            <InfoItem icon={<Mail className="h-4 w-4" />}         label="Email"         value={apt.patientEmail} />
-                            <InfoItem icon={<Phone className="h-4 w-4" />}        label="Phone"         value={apt.patientPhone} />
-                            <InfoItem icon={<CalendarDays className="h-4 w-4" />} label="Date of Birth"  value={apt.patientDateOfBirth || "—"} />
-                            <InfoItem icon={<User className="h-4 w-4" />}         label="Gender"        value={cap(apt.patientGender)} />
+                            <InfoItem icon={<User className="h-4 w-4" />} label="Patient" value={apt.patientName} />
+                            <InfoItem icon={<Calendar className="h-4 w-4" />} label="Appt. Date" value={fmtDate(apt.date)} />
+                            <InfoItem icon={<Clock className="h-4 w-4" />} label="Appt. Time" value={apt.time} />
+                            <InfoItem icon={<Mail className="h-4 w-4" />} label="Email" value={apt.patientEmail} />
+                            <InfoItem icon={<Phone className="h-4 w-4" />} label="Phone" value={apt.patientPhone} />
+                            <InfoItem icon={<CalendarDays className="h-4 w-4" />} label="Date of Birth" value={apt.patientDateOfBirth || "—"} />
+                            <InfoItem icon={<User className="h-4 w-4" />} label="Gender" value={cap(apt.patientGender)} />
                             {apt.patientAddress && (
                                 <InfoItem icon={<MapPin className="h-4 w-4" />} label="Address" value={apt.patientAddress} />
                             )}

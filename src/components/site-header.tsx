@@ -14,9 +14,9 @@ export function SiteHeader() {
         <h1 className="text-base font-medium">Dashboard</h1>
 
         <div className="ml-auto flex items-center gap-2">
-          <button className="relative text-zinc-500 hover:text-black dark:text-zinc-400 dark:hover:text-white transition-colors h-9 w-9 flex justify-center items-center rounded-lg hover:bg-zinc-100">
+          <button className="relative text-muted-foreground hover:text-foreground transition-colors h-9 w-9 flex justify-center items-center rounded-full hover:bg-muted">
             <Bell className="h-5 w-5" />
-            <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-zinc-950" />
+            <span className="absolute top-2 right-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-background" />
           </button>
         </div>
       </div>

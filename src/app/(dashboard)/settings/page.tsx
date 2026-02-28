@@ -89,13 +89,13 @@ export default function SettingsPage() {
                                                 sizes="(max-width: 640px) 50vw, 17vw"
                                             />
                                             {/* Label badge */}
-                                            <span className="absolute bottom-1 left-1 flex items-center gap-0.5 rounded-sm bg-white/70 px-1 py-0.5 text-[9px] font-semibold text-zinc-700 backdrop-blur-sm">
+                                            <span className="absolute bottom-1 left-1 flex items-center gap-0.5 rounded-sm bg-background/70 px-1 py-0.5 text-[9px] font-semibold text-foreground backdrop-blur-sm">
                                                 <Sun className="h-2.5 w-2.5 text-amber-500" /> Light
                                             </span>
                                         </div>
 
                                         {/* Divider */}
-                                        <div className="absolute inset-y-0 left-1/2 z-10 w-px -translate-x-1/2 bg-white/40" />
+                                        <div className="absolute inset-y-0 left-1/2 z-10 w-px -translate-x-1/2 bg-background/40" />
 
                                         {/* Dark half */}
                                         <div className="relative w-1/2 overflow-hidden">
@@ -106,15 +106,15 @@ export default function SettingsPage() {
                                                 className="object-cover transition-transform duration-300 group-hover:scale-105"
                                                 sizes="(max-width: 640px) 50vw, 17vw"
                                             />
-                                            <span className="absolute bottom-1 right-1 flex items-center gap-0.5 rounded-sm bg-black/50 px-1 py-0.5 text-[9px] font-semibold text-white backdrop-blur-sm">
+                                            <span className="absolute bottom-1 right-1 flex items-center gap-0.5 rounded-sm bg-foreground/50 px-1 py-0.5 text-[9px] font-semibold text-background backdrop-blur-sm">
                                                 <Moon className="h-2.5 w-2.5 text-indigo-300" /> Dark
                                             </span>
                                         </div>
 
                                         {/* Selected overlay */}
                                         {isSelected && (
-                                            <div className="absolute inset-0 z-20 flex items-center justify-center bg-black/20">
-                                                <CheckCircle2 className="h-8 w-8 text-white drop-shadow-md" />
+                                            <div className="absolute inset-0 z-20 flex items-center justify-center bg-foreground/20">
+                                                <CheckCircle2 className="h-8 w-8 text-background drop-shadow-md" />
                                             </div>
                                         )}
                                     </div>
@@ -123,12 +123,12 @@ export default function SettingsPage() {
                                     <div
                                         className={cn(
                                             "relative flex h-32 w-full items-center justify-center overflow-hidden",
-                                            "bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900"
+                                            "bg-gradient-to-br from-muted to-muted/70"
                                         )}
                                     >
                                         <ImageOff className="h-8 w-8 text-muted-foreground/40" />
                                         {isSelected && (
-                                            <div className="absolute inset-0 flex items-center justify-center bg-black/10">
+                                            <div className="absolute inset-0 flex items-center justify-center bg-foreground/10">
                                                 <CheckCircle2 className="h-8 w-8 text-primary drop-shadow" />
                                             </div>
                                         )}

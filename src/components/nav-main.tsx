@@ -35,7 +35,7 @@ export function NavMain({
                 <SidebarMenuButton
                   tooltip={item.title}
                   asChild
-                  className={isActive ? "bg-black text-white hover:bg-zinc-800 hover:text-white active:bg-black active:text-white dark:bg-zinc-800 dark:text-zinc-50 dark:hover:bg-zinc-700 dark:active:bg-zinc-800" : ""}
+                  className={isActive ? "bg-secondary text-secondary-foreground hover:bg-secondary/80 active:bg-secondary/70 font-medium" : ""}
                 >
                   <Link href={item.url}>
                     {item.icon && <item.icon />}

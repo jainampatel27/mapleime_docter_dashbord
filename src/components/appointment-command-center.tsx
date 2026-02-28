@@ -182,12 +182,13 @@ export function AppointmentCommandCenter({ appointment, doctorId }: Props) {
             {/* Trigger button */}
             <Button
                 size="sm"
-                variant="ghost"
-                className="h-8 w-8 text-muted-foreground hover:text-foreground"
+                variant="outline"
+                className="h-8 px-3 text-xs font-medium gap-1.5"
                 onClick={() => setOpen((v) => !v)}
                 title="Command Center"
             >
-                {open ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                Decision
+                {open ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
             </Button>
 
             {/* Dropdown panel */}

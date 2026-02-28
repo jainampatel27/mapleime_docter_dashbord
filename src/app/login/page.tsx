@@ -63,10 +63,10 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="min-h-screen grid lg:grid-cols-2 bg-white selection:bg-black selection:text-white">
+        <div className="min-h-screen grid lg:grid-cols-2 bg-background selection:bg-primary selection:text-primary-foreground">
 
-            {/* ── Left Panel ── */}
-            <div className="relative hidden lg:flex flex-col justify-between bg-black overflow-hidden p-14">
+            {/* ── Left Panel — dark hero (intentionally dark) ── */}
+            <div className="relative hidden lg:flex flex-col justify-between bg-foreground overflow-hidden p-14">
 
                 {/* Grayscale photo crossfader */}
                 {CAROUSEL_IMAGES.map((src, idx) => (
@@ -80,8 +80,8 @@ export default function LoginPage() {
                 ))}
 
                 {/* Multi-layer dark overlay for readability */}
-                <div className="absolute inset-0 bg-black/70" />
-                <div className="absolute inset-0 bg-linear-to-t from-black/95 via-black/30 to-black/20" />
+                <div className="absolute inset-0 bg-foreground/70" />
+                <div className="absolute inset-0 bg-linear-to-t from-foreground/95 via-foreground/30 to-foreground/20" />
 
                 {/* Noise texture */}
                 <div className="absolute inset-0 opacity-[0.03] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJub2lzZSI+PGZlVHVyYnVsZW5jZSB0eXBlPSJmcmFjdGFsTm9pc2UiIGJhc2VGcmVxdWVuY3k9IjAuNjUiIG51bU9jdGF2ZXM9IjMiIHN0aXRjaFRpbGVzPSJzdGl0Y2giLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgZmlsdGVyPSJ1cmwoI25vaXNlKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]" />
@@ -89,45 +89,45 @@ export default function LoginPage() {
                 {/* Fine grid lines */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff06_1px,transparent_1px),linear-gradient(to_bottom,#ffffff06_1px,transparent_1px)] bg-size-[40px_40px]" />
 
-                {/* White glow accent — top right */}
-                <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-white/8 blur-[100px] pointer-events-none" />
+                {/* Glow accent — top right */}
+                <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-background/8 blur-[100px] pointer-events-none" />
 
                 {/* ── Logo ── */}
                 <div className="relative z-10 flex items-center gap-3">
-                    <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-white">
-                        <Activity className="h-5 w-5 text-black" />
+                    <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-background">
+                        <Activity className="h-5 w-5 text-foreground" />
                     </div>
-                    <span className="text-white text-lg font-bold tracking-tight">Mapleime</span>
+                    <span className="text-background text-lg font-medium tracking-tight">Mapleime</span>
                 </div>
 
                 {/* ── Bottom block ── */}
                 <div className="relative z-10 space-y-10">
 
                     {/* Divider line */}
-                    <div className="w-12 h-px bg-white/40" />
+                    <div className="w-12 h-px bg-background/40" />
 
                     {/* Quote */}
                     <blockquote className="space-y-6">
-                        <p className="text-[1.65rem] font-light leading-snug tracking-tight text-white">
+                        <p className="text-[1.65rem] font-light leading-snug tracking-tight text-background">
                             &ldquo;The new standard for clinical excellence. Streamlining our practice with unparalleled precision and clarity.&rdquo;
                         </p>
                         <footer className="flex items-center gap-4">
-                            <div className="w-10 h-10 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm flex items-center justify-center text-xs font-semibold text-white tracking-wider">
+                            <div className="w-10 h-10 rounded-full border border-background/30 bg-background/10 backdrop-blur-sm flex items-center justify-center text-xs font-medium text-background tracking-wider">
                                 JD
                             </div>
                             <div>
-                                <p className="text-sm font-semibold text-white">Dr. Jane Doe</p>
-                                <p className="text-xs text-white/50 mt-0.5">Chief Medical Officer</p>
+                                <p className="text-sm font-medium text-background">Dr. Jane Doe</p>
+                                <p className="text-xs text-background/50 mt-0.5">Chief Medical Officer</p>
                             </div>
                         </footer>
                     </blockquote>
 
                     {/* Stats row */}
-                    <div className="flex gap-8 pt-2 border-t border-white/10">
+                    <div className="flex gap-8 pt-2 border-t border-background/10">
                         {STATS.map(({ value, label }) => (
                             <div key={label}>
-                                <p className="text-2xl font-bold text-white tracking-tight">{value}</p>
-                                <p className="text-xs text-white/40 mt-0.5 uppercase tracking-widest">{label}</p>
+                                <p className="text-2xl font-medium text-background tracking-tight">{value}</p>
+                                <p className="text-xs text-background/40 mt-0.5 uppercase tracking-widest">{label}</p>
                             </div>
                         ))}
                     </div>
@@ -138,7 +138,7 @@ export default function LoginPage() {
                             <button
                                 key={idx}
                                 onClick={() => setCurrentImage(idx)}
-                                className={`h-px rounded-full transition-all duration-500 ${currentImage === idx ? "w-10 bg-white" : "w-4 bg-white/25"}`}
+                                className={`h-px rounded-full transition-all duration-500 ${currentImage === idx ? "w-10 bg-background" : "w-4 bg-background/25"}`}
                                 aria-label={`Go to slide ${idx + 1}`}
                             />
                         ))}
@@ -147,29 +147,29 @@ export default function LoginPage() {
             </div>
 
             {/* ── Right Panel ── */}
-            <div className="relative flex items-center justify-center bg-white p-8 lg:p-16">
+            <div className="relative flex items-center justify-center bg-background p-8 lg:p-16">
 
                 {/* Barely-visible dot pattern background */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle,#00000008_1px,transparent_1px)] bg-size-[24px_24px] pointer-events-none" />
+                <div className="absolute inset-0 bg-[radial-gradient(circle,var(--color-foreground)_1px,transparent_1px)] opacity-[0.03] bg-size-[24px_24px] pointer-events-none" />
 
                 <div className="relative w-full max-w-sm space-y-9">
 
                     {/* Mobile logo */}
-                    <div className="flex lg:hidden items-center gap-2 text-black font-bold text-lg tracking-tight mb-6">
-                        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-black">
-                            <Activity className="h-4 w-4 text-white" />
+                    <div className="flex lg:hidden items-center gap-2 text-foreground font-medium text-lg tracking-tight mb-6">
+                        <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-primary">
+                            <Activity className="h-4 w-4 text-primary-foreground" />
                         </div>
                         <span>Mapleime</span>
                     </div>
 
                     {/* Heading */}
                     <div className="space-y-1.5">
-                        <h1 className="text-[2rem] font-bold tracking-tight text-black leading-none">Welcome back</h1>
-                        <p className="text-sm text-zinc-400">Sign in to your Mapleime workspace</p>
+                        <h1 className="text-[2rem] font-medium tracking-tight text-foreground leading-none">Welcome back</h1>
+                        <p className="text-sm text-muted-foreground">Sign in to your Mapleime workspace</p>
                     </div>
 
                     {error && (
-                        <div className="p-3 bg-red-50 text-red-600 text-sm font-medium rounded-lg border border-red-100">
+                        <div className="p-3 bg-destructive/[0.08] text-destructive text-sm font-medium rounded-xl border border-destructive/20">
                             {error}
                         </div>
                     )}
@@ -177,7 +177,7 @@ export default function LoginPage() {
                     {/* Form */}
                     <form className="space-y-5" onSubmit={handleSubmit}>
                         <div className="space-y-1.5">
-                            <Label htmlFor="email" className="text-xs font-semibold uppercase tracking-widest text-zinc-500">
+                            <Label htmlFor="email" className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
                                 Email
                             </Label>
                             <Input
@@ -187,15 +187,15 @@ export default function LoginPage() {
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="h-12 bg-zinc-50 border-zinc-200 text-black placeholder:text-zinc-300 focus-visible:ring-1 focus-visible:ring-black focus-visible:border-black rounded-lg"
+                                className="h-12 bg-muted/50 border-border text-foreground placeholder:text-muted-foreground/50 focus-visible:ring-1 focus-visible:ring-ring focus-visible:border-primary rounded-xl"
                             />
                         </div>
                         <div className="space-y-1.5">
                             <div className="flex items-center justify-between">
-                                <Label htmlFor="password" className="text-xs font-semibold uppercase tracking-widest text-zinc-500">
+                                <Label htmlFor="password" className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
                                     Password
                                 </Label>
-                                <Link href="/forgot-password" className="text-xs text-zinc-400 hover:text-black transition-colors">
+                                <Link href="/forgot-password" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
                                     Forgot password?
                                 </Link>
                             </div>
@@ -205,14 +205,14 @@ export default function LoginPage() {
                                 required
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="h-12 bg-zinc-50 border-zinc-200 text-black focus-visible:ring-1 focus-visible:ring-black focus-visible:border-black rounded-lg"
+                                className="h-12 bg-muted/50 border-border text-foreground focus-visible:ring-1 focus-visible:ring-ring focus-visible:border-primary rounded-xl"
                             />
                         </div>
 
                         <Button
                             type="submit"
                             disabled={isLoading}
-                            className="w-full h-12 bg-black hover:bg-zinc-800 active:bg-zinc-900 text-white text-sm font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 group"
+                            className="w-full h-12 bg-primary hover:bg-primary/90 active:bg-primary/80 text-primary-foreground text-sm font-medium rounded-xl transition-colors flex items-center justify-center gap-2 group"
                         >
                             {isLoading ? "Signing in..." : "Sign In"}
                             {!isLoading && <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />}
@@ -221,16 +221,16 @@ export default function LoginPage() {
 
                     {/* Divider */}
                     <div className="flex items-center gap-3">
-                        <div className="flex-1 h-px bg-zinc-100" />
-                        <span className="text-[11px] font-medium uppercase tracking-widest text-zinc-300">or</span>
-                        <div className="flex-1 h-px bg-zinc-100" />
+                        <div className="flex-1 h-px bg-border" />
+                        <span className="text-[11px] font-medium uppercase tracking-widest text-muted-foreground/60">or</span>
+                        <div className="flex-1 h-px bg-border" />
                     </div>
 
                     {/* SSO Button */}
                     <Button
                         variant="outline"
                         type="button"
-                        className="w-full h-12 border border-zinc-200 hover:border-zinc-400 hover:bg-zinc-50 text-black text-sm font-medium rounded-lg transition-all"
+                        className="w-full h-12 border border-border hover:border-input hover:bg-muted/50 text-foreground text-sm font-medium rounded-xl transition-all"
                     >
                         <svg className="mr-2.5 h-4 w-4 shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                             <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4" />
@@ -242,13 +242,13 @@ export default function LoginPage() {
                     </Button>
 
                     {/* Footer */}
-                    <p className="text-center text-xs text-zinc-300 leading-relaxed">
+                    <p className="text-center text-xs text-muted-foreground/60 leading-relaxed">
                         By signing in you agree to our{" "}
-                        <Link href="/terms" className="text-zinc-500 underline underline-offset-4 hover:text-black transition-colors">
+                        <Link href="/terms" className="text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors">
                             Terms of Service
                         </Link>{" "}
                         and{" "}
-                        <Link href="/privacy" className="text-zinc-500 underline underline-offset-4 hover:text-black transition-colors">
+                        <Link href="/privacy" className="text-muted-foreground underline underline-offset-4 hover:text-foreground transition-colors">
                             Privacy Policy
                         </Link>
                     </p>
