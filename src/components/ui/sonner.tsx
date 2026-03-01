@@ -10,6 +10,15 @@ import {
 import { useTheme } from "next-themes"
 import { Toaster as Sonner, type ToasterProps } from "sonner"
 
+/**
+ * MD3 Snackbar
+ * Spec: https://m3.material.io/components/snackbar/specs
+ *
+ * Container: inverse-surface (foreground in our system)
+ * Text: inverse-on-surface (background in our system)
+ * Shape: 4dp
+ * Action: inverse-primary colored text button
+ */
 const Toaster = ({ ...props }: ToasterProps) => {
   const { theme = "system" } = useTheme()
 
@@ -26,10 +35,11 @@ const Toaster = ({ ...props }: ToasterProps) => {
       }}
       style={
         {
-          "--normal-bg": "var(--popover)",
-          "--normal-text": "var(--popover-foreground)",
-          "--normal-border": "var(--border)",
-          "--border-radius": "var(--radius)",
+          /* MD3 Snackbar: inverse-surface container, inverse-on-surface text */
+          "--normal-bg": "var(--foreground)",
+          "--normal-text": "var(--background)",
+          "--normal-border": "transparent",
+          "--border-radius": "4px",
         } as React.CSSProperties
       }
       {...props}

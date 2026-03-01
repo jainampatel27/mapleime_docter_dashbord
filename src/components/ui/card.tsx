@@ -1,15 +1,46 @@
 import * as React from "react"
+import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+/**
+ * MD3 Cards
+ * Spec: https://m3.material.io/components/cards/specs
+ *
+ * Variants:
+ *   - elevated  → Surface + Level 1 elevation (default, most common)
+ *   - filled    → Surface Container Highest, no shadow
+ *   - outlined  → Surface + outline border, no shadow
+ */
+const cardVariants = cva(
+  "text-card-foreground flex flex-col gap-6 rounded-xl py-6",
+  {
+    variants: {
+      variant: {
+        /* MD3 Elevated Card: surface color + Level 1 elevation */
+        elevated: "bg-card shadow-sm",
+        /* MD3 Filled Card: surface-container-highest, no elevation */
+        filled: "bg-muted shadow-none",
+        /* MD3 Outlined Card: surface color, outline border, no elevation */
+        outlined: "bg-card border border-border shadow-none",
+      },
+    },
+    defaultVariants: {
+      variant: "elevated",
+    },
+  }
+)
+
+function Card({
+  className,
+  variant = "elevated",
+  ...props
+}: React.ComponentProps<"div"> & VariantProps<typeof cardVariants>) {
   return (
     <div
       data-slot="card"
-      className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl py-6 shadow-md",
-        className
-      )}
+      data-variant={variant}
+      className={cn(cardVariants({ variant }), className)}
       {...props}
     />
   )
@@ -89,4 +120,5 @@ export {
   CardAction,
   CardDescription,
   CardContent,
+  cardVariants,
 }

@@ -174,6 +174,53 @@
 }
 
 /* ============================================
+   Material Design 3 — State Layer Tokens
+   Spec: https://m3.material.io/foundations/interaction/states
+   ============================================ */
+:root {
+  --md3-state-hover-opacity: 0.08;
+  --md3-state-focus-opacity: 0.10;
+  --md3-state-pressed-opacity: 0.10;
+  --md3-state-dragged-opacity: 0.16;
+}
+
+/* ============================================
+   Material Design 3 — Elevation Scale
+   Spec: https://m3.material.io/styles/elevation/tokens
+   ============================================ */
+:root {
+  --md3-elevation-0: none;
+  --md3-elevation-1: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md3-elevation-2: 0 1px 2px 0 rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md3-elevation-3: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md3-elevation-4: 0 2px 3px 0 rgba(0, 0, 0, 0.3), 0 6px 10px 4px rgba(0, 0, 0, 0.15);
+  --md3-elevation-5: 0 4px 4px 0 rgba(0, 0, 0, 0.3), 0 8px 12px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   Material Design 3 — Motion Tokens
+   Spec: https://m3.material.io/styles/motion/easing-and-duration
+   ============================================ */
+:root {
+  --md3-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+  --md3-motion-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+  --md3-motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1);
+  --md3-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1);
+  --md3-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+  --md3-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+  --md3-motion-duration-short1: 50ms;
+  --md3-motion-duration-short2: 100ms;
+  --md3-motion-duration-short3: 150ms;
+  --md3-motion-duration-short4: 200ms;
+  --md3-motion-duration-medium1: 250ms;
+  --md3-motion-duration-medium2: 300ms;
+  --md3-motion-duration-medium3: 350ms;
+  --md3-motion-duration-medium4: 400ms;
+  --md3-motion-duration-long1: 450ms;
+  --md3-motion-duration-long2: 500ms;
+}
+
+/* ============================================
    Material Design 3 — Type Scale Utilities
    Mapped to Roboto via --font-sans
    ============================================ */
@@ -202,4 +249,12 @@
   .md3-label-large  { font-size: 0.875rem; line-height: 1.25rem; font-weight: 500; letter-spacing: 0.00625em; }
   .md3-label-medium { font-size: 0.75rem;  line-height: 1rem;    font-weight: 500; letter-spacing: 0.03125em; }
   .md3-label-small  { font-size: 0.6875rem; line-height: 1rem;   font-weight: 500; letter-spacing: 0.03125em; }
+
+  /* MD3 Elevation Utilities */
+  .md3-elevation-0 { box-shadow: var(--md3-elevation-0); }
+  .md3-elevation-1 { box-shadow: var(--md3-elevation-1); }
+  .md3-elevation-2 { box-shadow: var(--md3-elevation-2); }
+  .md3-elevation-3 { box-shadow: var(--md3-elevation-3); }
+  .md3-elevation-4 { box-shadow: var(--md3-elevation-4); }
+  .md3-elevation-5 { box-shadow: var(--md3-elevation-5); }
 }
